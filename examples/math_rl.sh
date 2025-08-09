@@ -17,8 +17,8 @@
 # configured by `--critic_type drgrpo`.
 
 # Hyperparameter ---------------------------------------
-GPUS=8
-BATCH_SIZE=128
+GPUS=1
+BATCH_SIZE=4
 BATCH_SIZE_PER_DEVICE=1
 ROLLOUT_PER_PROMPT=8
 MODEL=deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B
