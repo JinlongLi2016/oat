@@ -337,11 +337,15 @@ class PPOLearner(RLLearner):
 
     def compute_monte_carlo_advantages(self, rewards, response_masks):
         del response_masks
+        print(f"rewards.shape: {rewards.shape}")
         rewards = rewards.sum(-1)
         # Compute monte carlo trajectory-level advantage
         values = rewards.view(-1, self.args.num_samples).mean(dim=1)
+        print(f"values.shape: {values.shape}")
         values = values.repeat_interleave(self.args.num_samples, dim=0)
         advantages = rewards - values
+        print(f"values.repeat_interleave.shape: {values.shape}, advantages.shape: {advantages.shape}")
+        
         if self.args.critic_type == "grpo":
             # Additionally normalize by std.
             std_grouped_rewards = rewards.view(-1, self.args.num_samples).std(dim=1)
